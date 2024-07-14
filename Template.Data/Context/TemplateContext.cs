@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Template.Data.Extentions;
 using Template.Data.Mappings;
 using Template.Domain.Entities;
 
@@ -26,6 +27,8 @@ namespace Template.Data.Context
         {
             // ApplyConfiguration: aplica a configuração especificada pela classe UserMap ao modelo de dados
             modelBuilder.ApplyConfiguration(new UserMap());
+
+            modelBuilder.SeedData();
 
             // garante que as configurações padrão da classe base sejam aplicadas juntamente com as configurações personalizadas
             base.OnModelCreating(modelBuilder);
