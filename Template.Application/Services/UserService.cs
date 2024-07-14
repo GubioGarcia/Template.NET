@@ -7,7 +7,7 @@ using Template.Application.Interfaces;
 
 namespace Template.Application.Services
 {
-    internal class UserService: IUserService
+    public class UserService: IUserService
     {
         public void Test()
         {
