@@ -28,6 +28,7 @@ namespace Template.Data.Context
             // ApplyConfiguration: aplica a configuração especificada pela classe UserMap ao modelo de dados
             modelBuilder.ApplyConfiguration(new UserMap());
 
+            modelBuilder.ApplyGlobalConfigurations();
             modelBuilder.SeedData();
 
             // garante que as configurações padrão da classe base sejam aplicadas juntamente com as configurações personalizadas

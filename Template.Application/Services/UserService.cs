@@ -39,10 +39,8 @@ namespace Template.Application.Services
             {
                 Id = userViewModel.Id,
                 Name = userViewModel.Name,
-                Email = userViewModel.Email,
-                DateCreated = DateTime.Now,
-                IsDeleted = false,
-                DateUpdated = DateTime.Now
+                Email = userViewModel.Email
+                // demais campos são gerados através do ModelBuilderExtentions/ApplyGlobalConfigurations()
             };
 
             this.userRepository.Create(_user);
