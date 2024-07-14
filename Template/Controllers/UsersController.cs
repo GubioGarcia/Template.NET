@@ -19,8 +19,7 @@ namespace Template.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            this.userService.Test();
-            return Ok("Ok");
+            return Ok(this.userService.Get());
         }
     }
 }

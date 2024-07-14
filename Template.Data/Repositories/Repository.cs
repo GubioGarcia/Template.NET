@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Template.Data.Context;
 using Template.Domain.Interfaces;
+using Template.Domain.Models;
 
 namespace Template.Data.Repositories
 {
