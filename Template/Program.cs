@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Template.Application.AutoMapper;
 using Template.Application.Interfaces;
 using Template.Application.Services;
 using Template.Data.Context;
@@ -21,6 +22,9 @@ builder.Services.AddDbContext<TemplateContext>(options => options.UseSqlServer(
 
 // Register application services
 NativeInjector.RegisterServices(builder.Services);
+
+// Identifcação de onde o AutoMapper pegará as informações
+builder.Services.AddAutoMapper(typeof(AutoMapperSetup));
 
 var app = builder.Build();
 
