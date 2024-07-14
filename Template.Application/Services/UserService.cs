@@ -31,5 +31,23 @@ namespace Template.Application.Services
 
             return _userViewModels;
         }
+
+        public bool Post(UserViewModel userViewModel)
+        {
+            // converte a viewModel para um objeto de entidade a fim de salvar no DB
+            User _user = new User
+            {
+                Id = userViewModel.Id,
+                Name = userViewModel.Name,
+                Email = userViewModel.Email,
+                DateCreated = DateTime.Now,
+                IsDeleted = false,
+                DateUpdated = DateTime.Now
+            };
+
+            this.userRepository.Create(_user);
+
+            return true;
+        }
     }
 }
