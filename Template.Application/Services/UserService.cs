@@ -52,6 +52,21 @@ namespace Template.Application.Services
                 throw new Exception("User not found");
 
             return mapper.Map<UserViewModel>(_user);
-        } 
+        }
+
+        public bool Put(UserViewModel userViewModel)
+        {
+            User _user = this.userRepository.Find(x => x.Id == userViewModel.Id && !x.IsDeleted);
+            if (_user == null)
+                throw new Exception("User not found");
+
+            // converte informações contidas na ViewModel para User
+            _user = mapper.Map<User>(userViewModel);
+
+            // atualiza info do _user através da repository
+            this.userRepository.Update(_user);
+
+            return true;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 using Template.Application.Interfaces;
 using Template.Application.ViewModels;
 
@@ -33,6 +34,12 @@ namespace Template.Controllers
         public IActionResult GetById(string id)
         {
             return Ok(this.userService.GetById(id));
+        }
+
+        [HttpPut]
+        public IActionResult Put(UserViewModel userViewModel)
+        {
+            return Ok(this.userService.Put(userViewModel));
         }
     }
 }
