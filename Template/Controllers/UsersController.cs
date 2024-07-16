@@ -25,7 +25,7 @@ namespace Template.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(UserViewModel userViewModel) 
+        public IActionResult Post(UserViewModel userViewModel)
         {
             return Ok(this.userService.Post(userViewModel));
         }
@@ -40,6 +40,12 @@ namespace Template.Controllers
         public IActionResult Put(UserViewModel userViewModel)
         {
             return Ok(this.userService.Put(userViewModel));
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(string id)
+        {
+            return Ok(this.userService.Delete(id));
         }
     }
 }
