@@ -3,6 +3,7 @@ using Template.Application.AutoMapper;
 using Template.Application.Interfaces;
 using Template.Application.Services;
 using Template.Data.Context;
+using Template.Swagger;
 using Template.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,8 +24,9 @@ builder.Services.AddDbContext<TemplateContext>(options => options.UseSqlServer(
 // Register application services
 NativeInjector.RegisterServices(builder.Services);
 
-// Identifcação de onde o AutoMapper pegará as informações
+// Identificação de onde o AutoMapper pegará as informações
 builder.Services.AddAutoMapper(typeof(AutoMapperSetup));
+builder.Services.AddSwaggerConfiguration();
 
 var app = builder.Build();
 
@@ -35,6 +37,8 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.UseSwaggerConfigure();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
