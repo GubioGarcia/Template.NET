@@ -47,5 +47,11 @@ namespace Template.Controllers
         {
             return Ok(this.userService.Delete(id));
         }
+
+        [HttpPost("authenticate")]
+        public IActionResult Authenticate(UserAuthenticateRequestViewModel userViewModel)
+        {
+            return Ok(this.userService.Authenticate(userViewModel));
+        }
     }
 }
