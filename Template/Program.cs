@@ -5,6 +5,10 @@ using Template.Application.Services;
 using Template.Data.Context;
 using Template.Swagger;
 using Template.IoC;
+using System.Text;
+using Template.Auth.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,12 +42,39 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+#region Authentication
+
+var key = Encoding.ASCII.GetBytes(Settings.Secret);
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(x =>
+{   // configuração objeto JwtBearer
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
+    x.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
+
+#endregion
+
+
 app.UseSwaggerConfigure();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+// possibilita a aplicação reconhercer e gerenciar as chaves privadas e publicas
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseAuthorization();
 
